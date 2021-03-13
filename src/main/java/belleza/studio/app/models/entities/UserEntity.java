@@ -10,6 +10,7 @@ public class UserEntity extends BaseEntity {
 
     private String firstName;
     private String lastName;
+    private String username;
     private String email;
     private String password;
     private List<UserRoleEntity> roles = new ArrayList<>();
@@ -33,6 +34,15 @@ public class UserEntity extends BaseEntity {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    @Column(unique = true, nullable = false)
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @Column(nullable = false)
