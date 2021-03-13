@@ -1,0 +1,115 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+    <style>
+
+        body {
+            background-image: url(/img/blzmakeup.jpg);
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            height: 100vh;
+        }
+
+        .navbar {
+            width: 110%;
+            padding: 15px;
+            border-radius: 20px;
+            margin: auto;
+            background-color: #e4606d;
+            overflow: auto;
+        }
+
+        .navbar a {
+            float: left;
+            padding: 12px;
+            color: white;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .navbar a:hover {
+            background-color: #A50965;
+            border-radius: 20px;
+            opacity: 0.9;
+        }
+
+        .navbar .logo {
+            float: left;
+            width: 40px;
+        }
+
+        .active {
+            background-color: #A50965;
+            border-radius: 20px;
+        }
+
+        @media screen and (max-width: 500px) {
+            .navbar a {
+                float: none;
+                display: block;
+            }
+        }
+
+        /* NAV END */
+
+        .footer {
+            padding: 20px;
+            text-align: center;
+            background: #e4606d;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <img class="logo" src="/img/eyebrow.png" alt="logo">
+    <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a>
+    <a href="#"><i class="fa fa-fw fa-bookmark"></i> My makeups</a>
+    <a href="#"><i class="fa fa-fw fa-calendar"></i> Booked hours</a>
+    <a href="/users/login"><i class="fa fa-fw fa-user"></i> Login</a>
+    <a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a>
+</div>
+
+<main class="p-5 align-content-center bg-blur my-main">
+    <h5 class="text-right text-dark mt-5">Welcome, <span text=""></span></h5>
+    <h2  class="text-dark border-bottom">Booked hours for makeup: </h2>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card mb-4 box-shadow">
+                <img src="/img/2.jpg" class="card-img-top" alt="Thumbnail [100%x225]"
+                     data-holder-rendered="true"
+                     style="height: 225px; width: 100%; display: block;">
+                <div class="card-body">
+                    <div class="text-center">
+                        <p class="card-text border-bottom ">Name: Name of client</p>
+                        <p class="card-text border-bottom ">Date and time: Date and time for makeup</p>
+                        <p class="card-text border-bottom ">Makeup type: Type of makeup</p>
+                        <p class="card-text border-bottom">Lashes: yes/no</p>
+                    </div>
+                    <br/>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a type="button" href="" class="btn btn-sm btn-outline-secondary">Complete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+</body>
+
+<footer class="footer bg-blur">
+    <div class="footer">
+        <h2>&copy;Belleza Makeup Studio 2021. All rights reserved.</h2>
+    </div>
+</footer>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update user form</title>
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+
+<style>
+    body {
+        background-image: url(/img/blzmakeup.jpg);
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
+        height: 100vh;
+    }
+
+</style>
+
+</head>
+<body>
+
+<div class="container">
+    <h1> Update user form</h1>
+    <hr>
+    <h2> Update User</h2>
+
+    <form action="#" th:object ="" method="POST">
+
+        <!-- Add hidden form field to handle update -->
+        <input type="hidden" th:field="">
+
+        <input type="text" th:field=""
+               placeholder="User First Name" class="form-control mb-4 col-4">
+
+        <input type="text" th:field=""
+               placeholder="User Last Name" class="form-control mb-4 col-4">
+
+        <input type="text" th:field=""
+               placeholder="User Email" class="form-control mb-4 col-4">
+
+        <div class="form-group" style="width: 34%">
+            <label class="text-a text-dark font-weight-bold">Select Role:</label>
+            <select id="role" name="role" class="form-control">
+                <option value="">- Select role type -</option>
+                <option each="" text="" value="">
+                    Roles
+                </option>
+            </select>
+            <p class="invalid-feedback">
+                Role type is required.
+            </p>
+        </div>
+
+        <button type="submit" class="btn btn-info col-2"> Update Employee</button>
+    </form>
+</div>
+
+</body>
+</html>

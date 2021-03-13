@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+    <title>Admin panel</title>
+
+<style>
+    body {
+        background-image: url(/img/blzmakeup.jpg);
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
+        height: 100vh;
+    }
+
+    .footer {
+        padding: 50px;
+        text-align: center;
+        background: #e4606d;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 2.5rem;            /* Footer height */
+    }
+</style>
+
+</head>
+<body>
+
+<div class="container my-2">
+    <div>
+        <h1 class="text-dark font-weight-bold" style="text-align: center"> Users List</h1>
+        <a href = "/add" class="btn btn-primary btn-sm mb-3"> Add Employee</a>
+    </div>
+
+    <div>
+        <table border="1" class="table table-striped table-responsive-md" style="border-color: black">
+            <thead>
+            <tr style="border-color: black">
+                <th> User First Name</th>
+                <th> User Last Name</th>
+                <th> User Email</th>
+                <th> User role</th>
+                <th> Actions </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="employee : ${listEmployees}">
+                <td th:text="${employee.firstName}"></td>
+                <td th:text="${employee.lastName}"></td>
+                <td th:text="${employee.email}"></td>
+                <td text=""></td>
+                <td> <a th:href="@{/showFormForUpdate/{id}(id=${employee.id})}" class="btn btn-primary"> Update</a>
+                    <a th:href="@{/deleteEmployee/{id}(id=${employee.id})}" class="btn btn-danger"> Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+
+<footer class="footer bg-blur">
+    <div class="footer">
+        <h2 class="text-dark font-weight-bold">&copy;Belleza Makeup Studio 2021. All rights reserved.</h2>
+    </div>
+</footer>
+
+</html>
