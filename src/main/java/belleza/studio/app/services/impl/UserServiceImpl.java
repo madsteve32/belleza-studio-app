@@ -3,9 +3,15 @@ package belleza.studio.app.services.impl;
 import belleza.studio.app.models.entities.UserEntity;
 import belleza.studio.app.models.entities.UserRoleEntity;
 import belleza.studio.app.models.entities.enums.UserRole;
+import belleza.studio.app.models.service.UserRegistrationServiceModel;
 import belleza.studio.app.repositories.UserRepository;
 import belleza.studio.app.repositories.UserRoleRepository;
 import belleza.studio.app.services.UserService;
+import org.modelmapper.ModelMapper;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +20,17 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
+    private final BellezaDBUserService bellezaDBUserService;
     private final UserRepository userRepository;
     private final UserRoleRepository userRoleRepository;
+    private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, UserRoleRepository userRoleRepository, PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(BellezaDBUserService bellezaDBUserService, UserRepository userRepository, UserRoleRepository userRoleRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder) {
+        this.bellezaDBUserService = bellezaDBUserService;
         this.userRepository = userRepository;
         this.userRoleRepository = userRoleRepository;
+        this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
     }
 

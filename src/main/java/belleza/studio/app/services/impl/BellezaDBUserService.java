@@ -1,4 +1,4 @@
-package belleza.studio.app.services;
+package belleza.studio.app.services.impl;
 
 import belleza.studio.app.models.entities.UserEntity;
 import belleza.studio.app.repositories.UserRepository;
@@ -9,10 +9,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class BellezaDBUserService implements UserDetailsService {
 
     private final UserRepository userRepository;
@@ -34,7 +36,8 @@ public class BellezaDBUserService implements UserDetailsService {
 
     private UserDetails mapToUserDetails(UserEntity userEntity) {
         List<GrantedAuthority> authorities = userEntity
-                .getRoles().stream()
+                .getRoles()
+                .stream()
                 .map(r -> new SimpleGrantedAuthority("ROLE_" + r.getRole().name()))
                 .collect(Collectors.toList());
 

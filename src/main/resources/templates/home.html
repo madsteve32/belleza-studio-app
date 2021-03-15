@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -16,7 +17,7 @@
         }
 
         .navbar {
-            width: 110%;
+            width: 100%;
             padding: 15px;
             border-radius: 20px;
             margin: auto;
@@ -172,14 +173,7 @@
 </head>
 <body>
 
-<div class="navbar">
-    <img class="logo" src="/img/eyebrow.png" alt="logo">
-    <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a>
-    <a href="/makeup-gallery"><i class="fa fa-fw fa-bookmark"></i> Our services</a>
-    <a href="/makeup-list"><i class="fa fa-fw fa-calendar"></i> Booked hours</a>
-    <a href="/users/login"><i class="fa fa-fw fa-user"></i> Login</a>
-    <a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a>
-</div>
+<div th:replace="fragments/fragment :: nav"></div>
 
 <!-- Slideshow container -->
 <div style="text-align: center" class="slideshow-container1">

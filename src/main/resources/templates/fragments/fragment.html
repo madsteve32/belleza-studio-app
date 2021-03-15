@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<div th:fragment="nav" class="navbar">
+    <img class="logo" src="/img/eyebrow.png" alt="logo">
+    <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a>
+    <a href="/makeup-gallery"><i class="fa fa-fw fa-bookmark"></i> Our services</a>
+    <a href="/makeup-list"><i class="fa fa-fw fa-calendar"></i> Booked hours</a>
+    <a sec:authorize="!isAuthenticated()" th:href="@{/users/login}"><i class="fa fa-fw fa-user"></i> Login</a>
+    <a sec:authorize="isAuthenticated()" th:action="@{/logout}" method="POST"
+       href="/logout"><i class="fa fa-sign-out"></i> Logout</a>
+</div>
+
+<footer th:fragment="footer" class="footer bg-blur position-">
+    <div class="container-fluid text-center">
+        <div class="h5 text-white">
+            &copy;Belleza Makeup Studio 2021. All rights reserved.
+        </div>
+    </div>
+</footer>

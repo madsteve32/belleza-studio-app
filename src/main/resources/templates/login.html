@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Login Form</title>
@@ -21,7 +21,7 @@
         }
 
         .navbar {
-            width: 110%;
+            width: 100%;
             padding: 15px;
             border-radius: 20px;
             margin: auto;
@@ -63,7 +63,7 @@
         #ui {
             background-color: #e4606d;
             padding: 30px;
-            margin-top: 80px;
+            margin-top: 50px;
             border-radius: 10px;
             opacity: 0.9;
         }
@@ -73,7 +73,7 @@
         }
 
         .footer {
-            padding: 20px;
+            padding: 50px;
             text-align: center;
             background: #e4606d;
         }
@@ -82,14 +82,7 @@
 
 <body>
 
-<div class="navbar">
-    <img class="logo" src="/img/eyebrow.png" alt="logo">
-    <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a>
-    <a href="#"><i class="fa fa-fw fa-bookmark"></i> My makeups</a>
-    <a href="/makeup-list"><i class="fa fa-fw fa-calendar"></i> Booked hours</a>
-    <a href="/users/login"><i class="fa fa-fw fa-user"></i> Login</a>
-    <a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a>
-</div>
+<div th:replace="fragments/fragment :: nav"></div>
 
 <div class="container">
     <div class="row">
@@ -98,26 +91,32 @@
         <div class="col-lg-6">
             <div id="ui">
                 <h1 class="text-center">LOGIN</h1>
-                <form class="form-group text-center">
+                <div th:if="${bad_credentials}" class="alert alert-danger" role="alert">
+                    Username or password is wrong.
+                </div>
+                <form th:action="@{/users/login}" method="POST" class="form-group text-center">
                     <div class="row-center">
                         <div class="text-center">
-                            <label class="text-white font-weight-bold">Username:</label>
-                            <input type="text" name="firstName" class="form-control" placeholder="Username">
+                            <label for="inputUsername" class="text-white font-weight-bold">Username:</label>
+                            <input type="text" name="username"
+                                   id="inputUsername"
+                                   aria-describedby="usernameHelpInline"
+                                   class="form-control"
+                                   placeholder="Username">
                         </div>
                     </div>
                     <br/>
                     <div class="row-center">
                         <div class="text-center">
-                            <label class="text-white font-weight-bold">Password:</label>
-                            <input type="password" name="password" class="form-control" placeholder="Password">
+                            <label for="inputPassword" class="text-white font-weight-bold">Password:</label>
+                            <input type="password" name="password"
+                                   id="inputPassword" class="form-control"
+                                   placeholder="Password" aria-describedby="passwordHelpInline">
                         </div>
 
                     </div>
                     <br/>
                     <input type="submit" name="Login" value="Login" class="btn btn-primary btn-block btn-lg">
-                    <br/>
-                    <p class="text-white font-weight-bold">Don't have account?<p/>
-                    <p class="text-white font-weight-bold">Go to: <a class="text-white font-weight-bold" href="/users/register">Register</a></p>
                 </form>
             </div>
         </div>
@@ -126,13 +125,7 @@
     </div>
 </div>
 </body>
-<br>
-<footer class="footer bg-blur position-">
-    <div class="container-fluid text-center">
-        <div class="h5 text-white">
-            &copy;Belleza Makeup Studio 2021. All rights reserved.
-        </div>
-    </div>
-</footer>
+<br/>
+<footer th:replace="fragments/fragment :: footer"></footer>
 
 </html>
