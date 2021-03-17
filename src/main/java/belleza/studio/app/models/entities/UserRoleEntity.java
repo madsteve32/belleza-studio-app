@@ -1,6 +1,6 @@
 package belleza.studio.app.models.entities;
 
-import belleza.studio.app.models.entities.enums.UserRole;
+import belleza.studio.app.models.entities.enums.RoleNameEnum;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,17 +11,17 @@ import javax.persistence.Table;
 @Table(name = "roles")
 public class UserRoleEntity extends BaseEntity {
 
-    private UserRole role;
+    private RoleNameEnum role;
 
     public UserRoleEntity() {
     }
 
     @Enumerated(EnumType.STRING)
-    public UserRole getRole() {
+    public RoleNameEnum getRole() {
         return role;
     }
 
-    public void setRole(UserRole role) {
+    public void setRole(RoleNameEnum role) {
         this.role = role;
     }
 }

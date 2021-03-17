@@ -13,7 +13,7 @@ public class UserEntity extends BaseEntity {
     private String username;
     private String email;
     private String password;
-    private List<UserRoleEntity> roles = new ArrayList<>();
+    private UserRoleEntity role;
 
     public UserEntity() {
     }
@@ -63,15 +63,12 @@ public class UserEntity extends BaseEntity {
         this.password = password;
     }
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "users_roles",
-    joinColumns = @JoinColumn(name = "user_id"),
-    inverseJoinColumns = @JoinColumn(name = "role_id"))
-    public List<UserRoleEntity> getRoles() {
-        return roles;
+    @ManyToOne(cascade = CascadeType.ALL)
+    public UserRoleEntity getRole() {
+        return role;
     }
 
-    public void setRoles(List<UserRoleEntity> roles) {
-        this.roles = roles;
+    public void setRole(UserRoleEntity role) {
+        this.role = role;
     }
 }

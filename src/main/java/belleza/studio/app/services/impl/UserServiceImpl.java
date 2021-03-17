@@ -2,16 +2,12 @@ package belleza.studio.app.services.impl;
 
 import belleza.studio.app.models.entities.UserEntity;
 import belleza.studio.app.models.entities.UserRoleEntity;
-import belleza.studio.app.models.entities.enums.UserRole;
+import belleza.studio.app.models.entities.enums.RoleNameEnum;
 import belleza.studio.app.models.service.UserRegistrationServiceModel;
 import belleza.studio.app.repositories.UserRepository;
 import belleza.studio.app.repositories.UserRoleRepository;
 import belleza.studio.app.services.UserService;
 import org.modelmapper.ModelMapper;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -40,9 +36,21 @@ public class UserServiceImpl implements UserService {
         if (userRepository.count() == 0) {
 
             UserRoleEntity adminRole = new UserRoleEntity();
-            adminRole.setRole(UserRole.ADMIN);
+            adminRole.setRole(RoleNameEnum.ADMIN);
+
+            UserRoleEntity makeupArtist = new UserRoleEntity();
+            makeupArtist.setRole(RoleNameEnum.MAKEUP_ARTIST);
+
+            UserRoleEntity manicurist = new UserRoleEntity();
+            manicurist.setRole(RoleNameEnum.MANICURIST);
+
+            UserRoleEntity hairdresser = new UserRoleEntity();
+            hairdresser.setRole(RoleNameEnum.HAIRDRESSER);
 
             userRoleRepository.save(adminRole);
+            userRoleRepository.save(makeupArtist);
+            userRoleRepository.save(manicurist);
+            userRoleRepository.save(hairdresser);
 
             UserEntity userEntity = new UserEntity();
             userEntity.setFirstName("Steven");
@@ -50,9 +58,29 @@ public class UserServiceImpl implements UserService {
             userEntity.setEmail("steve@gmail.com");
             userEntity.setUsername("admin");
             userEntity.setPassword(passwordEncoder.encode("admin"));
-            userEntity.setRoles(List.of(adminRole));
+            userEntity.setRole(adminRole);
 
             userRepository.save(userEntity);
         }
+    }
+
+    @Override
+    public List<UserEntity> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public void addUser(UserRegistrationServiceModel userRegistrationServiceModel) {
+        UserEntity newUser = modelMapper.map(userRegistrationServiceModel, UserEntity.class);
+        newUser.setPassword(passwordEncoder.encode(userRegistrationServiceModel.getPassword()));
+
+
+
+        userRepository.save(newUser);
+    }
+
+    @Override
+    public boolean usernameExists(String username) {
+        return userRepository.findByUsername(username).isPresent();
     }
 }

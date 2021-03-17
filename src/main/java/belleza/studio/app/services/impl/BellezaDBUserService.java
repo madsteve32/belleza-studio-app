@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,11 +36,7 @@ public class BellezaDBUserService implements UserDetailsService {
     }
 
     private UserDetails mapToUserDetails(UserEntity userEntity) {
-        List<GrantedAuthority> authorities = userEntity
-                .getRoles()
-                .stream()
-                .map(r -> new SimpleGrantedAuthority("ROLE_" + r.getRole().name()))
-                .collect(Collectors.toList());
+       List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + userEntity.getRole().getRole().name()));
 
         return new User(userEntity.getUsername(), userEntity.getPassword(), authorities);
     }

@@ -1,5 +1,5 @@
 package belleza.studio.app.models.entities.enums;
 
-public enum UserRole {
+public enum RoleNameEnum {
     ADMIN, MAKEUP_ARTIST, MANICURIST, HAIRDRESSER
 }

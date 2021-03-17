@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -138,31 +138,66 @@
 
 <div id="id01" class="modal">
     <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-    <form class="modal-content" action="/users/add">
+    <form class="modal-content" th:action="@{/add-user}" th:object="${registrationBindingModel}" method="POST">
         <div class="container">
             <h1 class="text-dark font-weight-bold">Add user</h1>
             <p class="text-dark font-weight-bold">Please fill in this form to create an account.</p>
             <hr>
-            <label class="text-dark font-weight-bold"><b>First name:</b></label>
-            <input type="text" placeholder="Enter First name" name="firstName" required>
+            <label for="firstName" class="text-dark font-weight-bold"><b>First name:</b></label>
+            <input type="text" id="firstName" name="firstName"
+                   th:value="*{firstName}"
+                   th:errorclass="is-invalid"
+                   class="form-control"
+                   aria-describedby="firstNameHelpInLine"
+                   placeholder="Enter First name" required>
+            <small id="firstNameError"
+                   class="invalid-feedback text-light form-text bg-danger rounded">
+                First name length must be more than 3 characters</small>
 
-            <label class="text-dark font-weight-bold"><b>Last name:</b></label>
-            <input type="text" placeholder="Enter Last name" name="lastName" required>
+            <label for="lastName" class="text-dark font-weight-bold"><b>Last name:</b></label>
+            <input type="text" id="lastName" name="lastName"
+                   th:value="*{lastName}"
+                   th:errorclass="is-invalid"
+                   class="form-control"
+                   aria-describedby="lastNameHelpInLine"
+                   placeholder="Enter Last name" required>
+            <small id="lastNameError"
+                   class="invalid-feedback text-light form-text bg-danger rounded">
+                Last name length must be more than 3 characters</small>
 
-            <label class="text-dark font-weight-bold"><b>Username:</b></label>
-            <input type="text" placeholder="Enter username" name="username" required>
+            <label for="username" class="text-dark font-weight-bold"><b>Username:</b></label>
+            <input type="text" id="username" name="username"
+                   th:value="*{username}"
+                   th:erroclass="is-invalid"
+                   class="form-control"
+                   aria-describedby="usernameHelpInLine"
+                   placeholder="Enter username" required>
+            <small id="usernameError"
+                   class="invalid-feedback text-light form-text bg-danger rounded">
+                Username length must be more than 3 characters</small>
 
-            <label class="text-dark font-weight-bold"><b>Password:</b></label>
-            <input type="password" placeholder="Enter password" name="lastName" required>
+
+            <label for="password" class="text-dark font-weight-bold"><b>Password:</b></label>
+            <input type="password" id="password" name="password"
+                   th:value="*{password}"
+                   th:errorclass="is-invalid"
+                   class="form-control"
+                   aria-describedby="passwordHelpInLine"
+                   placeholder="Enter password" required>
+            <small id="passwordError"
+                   class="invalid-feedback text-light form-text bg-danger rounded">
+                Password length must be between 5 and 20 characters and passwords should match.
+            </small>
 
             <label class="text-dark font-weight-bold"><b>Email:</b></label>
             <input type="text" placeholder="Enter Email" name="email" required>
 
             <div class="form-group">
-                <label class="text-a text-dark font-weight-bold">Select Role:</label>
-                <select id="role" name="role" class="form-control">
+                <label for="role" class="text-a text-dark font-weight-bold">Select Role:</label>
+                <select id="role" name="role" th:errorclass="is-invalid" class="form-control">
                     <option value="">- Select role type -</option>
-                    <option each="" text="" value="">
+                    <option th:each="r : ${roles}" th:text="${r}"
+                            th:value="${r}" th:selected="${r} == *{role}">
                         Roles
                     </option>
                 </select>

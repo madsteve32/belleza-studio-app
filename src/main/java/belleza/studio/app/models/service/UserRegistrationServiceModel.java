@@ -1,5 +1,7 @@
 package belleza.studio.app.models.service;
 
+import belleza.studio.app.models.entities.enums.RoleNameEnum;
+
 public class UserRegistrationServiceModel {
 
     private String firstName;
@@ -7,6 +9,7 @@ public class UserRegistrationServiceModel {
     private String username;
     private String email;
     private String password;
+    private RoleNameEnum role;
 
     public UserRegistrationServiceModel() {
     }
@@ -49,5 +52,13 @@ public class UserRegistrationServiceModel {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public RoleNameEnum getRole() {
+        return role;
+    }
+
+    public void setRole(RoleNameEnum role) {
+        this.role = role;
     }
 }

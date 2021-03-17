@@ -1,6 +1,6 @@
 package belleza.studio.app.models.binding;
 
-import belleza.studio.app.models.entities.enums.UserRole;
+import belleza.studio.app.models.entities.enums.RoleNameEnum;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -13,7 +13,7 @@ public class UserRegistrationBindingModel {
     private String username;
     private String password;
     private String email;
-    private UserRole role;
+    private RoleNameEnum role;
 
     public UserRegistrationBindingModel() {
     }
@@ -68,12 +68,11 @@ public class UserRegistrationBindingModel {
         this.email = email;
     }
 
-    @NotEmpty
-    public UserRole getRole() {
+    public RoleNameEnum getRole() {
         return role;
     }
 
-    public void setRole(UserRole role) {
+    public void setRole(RoleNameEnum role) {
         this.role = role;
     }
 }
