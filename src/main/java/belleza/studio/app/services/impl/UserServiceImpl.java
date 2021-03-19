@@ -111,6 +111,11 @@ public class UserServiceImpl implements UserService {
         userRepository.save(updatedUser);
     }
 
+    @Override
+    public void deleteUser(long id) {
+        userRepository.deleteById(id);
+    }
+
 
     @Override
     public boolean usernameExists(String username) {

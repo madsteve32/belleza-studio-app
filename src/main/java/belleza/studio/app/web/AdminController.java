@@ -99,4 +99,11 @@ public class AdminController {
 
         return "redirect:/admin-panel";
     }
+
+    @GetMapping("/delete-user/{id}")
+    public String deleteUser(@PathVariable long id) {
+        userService.deleteUser(id);
+
+        return "redirect:/admin-panel";
+    }
 }

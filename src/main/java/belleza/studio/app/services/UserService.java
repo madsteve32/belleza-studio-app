@@ -20,4 +20,6 @@ public interface UserService {
     UserEntity getUserById(long id);
 
     void updateUser(UserUpdateServiceModel userUpdateServiceModel);
+
+    void deleteUser(long id);
 }

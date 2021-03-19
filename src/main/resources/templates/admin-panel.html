@@ -60,8 +60,8 @@
                 <td th:text="${user.lastName}"></td>
                 <td th:text="${user.email}"></td>
                 <td th:text="${user.getRole().getRole().name()}"></td>
-                <td> <a th:href="@{/update-user/{id}(id=${user.id})}" class="btn btn-primary"> Update</a>
-                    <a th:href="@{/delete-user/{id}(id=${user.id})}" class="btn btn-danger"> Delete</a>
+                <td> <a th:href="@{/update-user/{id}(id= ${user.id})}" class="btn btn-primary"> Update</a>
+                    <a th:href="@{/delete-user/{id}(id= ${user.id})}" class="btn btn-danger"> Delete</a>
                 </td>
             </tr>
             </tbody>
