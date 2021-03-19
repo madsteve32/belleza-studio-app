@@ -4,14 +4,13 @@ import belleza.studio.app.models.binding.UserRegistrationBindingModel;
 import belleza.studio.app.models.entities.UserEntity;
 import belleza.studio.app.models.entities.enums.RoleNameEnum;
 import belleza.studio.app.models.service.UserRegistrationServiceModel;
+import belleza.studio.app.models.service.UserUpdateServiceModel;
 import belleza.studio.app.services.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -48,7 +47,7 @@ public class AdminController {
 
         model.addAttribute("roles", RoleNameEnum.values());
 
-        return "add-user";
+        return "register";
     }
 
     @PostMapping("/add-user")
@@ -59,20 +58,44 @@ public class AdminController {
             redirectAttributes.addFlashAttribute("userRegistrationBindingModel", userRegistrationBindingModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userRegistrationBindingModel", bindingResult);
 
-            return "redirect:/add-user";
+            return "redirect:/register";
         }
 
         if (userService.usernameExists(userRegistrationBindingModel.getUsername())) {
             redirectAttributes.addFlashAttribute("userRegistrationBindingModel", userRegistrationBindingModel);
             redirectAttributes.addFlashAttribute("userExistsError", true);
 
-            return "redirect:/add-user";
+            return "redirect:/register";
         }
 
         UserRegistrationServiceModel userRegistrationServiceModel = modelMapper
                 .map(userRegistrationBindingModel, UserRegistrationServiceModel.class);
 
         userService.addUser(userRegistrationServiceModel);
+
+        return "redirect:/admin-panel";
+    }
+
+    @GetMapping("/update-user/{id}")
+    public String update(@PathVariable("id") long id, Model model) {
+        // Get user from DB
+        UserEntity userEntity = userService.getUserById(id);
+        UserUpdateServiceModel userUpdateServiceModel = modelMapper.map(userEntity, UserUpdateServiceModel.class);
+
+        // Set user as a model attribute to pre-populate the form
+        model.addAttribute("user", userUpdateServiceModel);
+        model.addAttribute("roles", RoleNameEnum.values());
+
+        return "update";
+    }
+
+    @PostMapping("/save-user")
+    public String updateConfirm(@ModelAttribute("user") UserUpdateServiceModel userUpdateServiceModel) {
+
+        System.out.println(userUpdateServiceModel.toString());
+
+        // save user in DB after updated information
+        userService.updateUser(userUpdateServiceModel);
 
         return "redirect:/admin-panel";
     }

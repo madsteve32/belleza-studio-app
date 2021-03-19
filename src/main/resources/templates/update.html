@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Update user form</title>
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+
+<style>
+    body {
+        background-image: url(/img/blzmakeup.jpg);
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
+        height: 100vh;
+    }
+
+    form {
+        text-align: left;
+    }
+</style>
+
+</head>
+<body>
+
+<div class="container" style="text-align: center">
+    <h1> Update user form</h1>
+    <hr>
+    <h2> Update User</h2>
+
+    <form th:action="@{/save-user}" th:object ="${user}" method="POST">
+
+        <!-- Add hidden form field to handle update -->
+        <input type="hidden" th:field="*{id}">
+
+        <div class="container">
+            <p class="text-white font-weight-bold" style="text-align: center">Please fill this form to update an account.</p>
+            <hr>
+            <div class="col-xs-3">
+            <label for="firstName" class="text-dark font-weight-bold"><b>First name:</b></label>
+            <input type="text" id="firstName" name="firstName"
+                   th:value="*{firstName}"
+                   th:errorclass="is-invalid"
+                   class="form-control"
+                   aria-describedby="firstNameHelpInLine"
+                   placeholder="Enter First name" required>
+            <small id="firstNameError"
+                   class="invalid-feedback text-light form-text bg-danger rounded">
+                First name length must be more than 3 characters</small>
+            </div>
+            <div class="col-xs-3">
+            <label for="lastName" class="text-dark font-weight-bold"><b>Last name:</b></label>
+            <input type="text" id="lastName" name="lastName"
+                   th:value="*{lastName}"
+                   th:errorclass="is-invalid"
+                   class="form-control"
+                   aria-describedby="lastNameHelpInLine"
+                   placeholder="Enter Last name" required>
+            <small id="lastNameError"
+                   class="invalid-feedback text-light form-text bg-danger rounded">
+                Last name length must be more than 3 characters</small>
+            </div>
+
+            <div class="col-xs-3">
+            <label for="username" class="text-dark font-weight-bold"><b>Username:</b></label>
+            <input type="text" id="username" name="username"
+                   th:value="*{username}"
+                   th:erroclass="is-invalid"
+                   class="form-control"
+                   aria-describedby="usernameHelpInLine"
+                   placeholder="Enter username" required>
+            <small id="usernameError"
+                   class="invalid-feedback text-light form-text bg-danger rounded">
+                Username length must be more than 3 characters</small>
+            </div>
+
+            <div class="col-xs-3">
+            <label for="email" class="text-dark font-weight-bold"><b>Email:</b></label>
+            <input type="text" id="email" name="email"
+                   th:value="*{email}"
+                   th:errorclass="is-invalid"
+                   class="form-control"
+                   aria-describedby="emailHelpInLine"
+                   placeholder="Enter email" required>
+            <small id="emailError"
+                   class="invalid-feedback text-light form-text bg-danger rounded">
+                Email must be valid.
+            </small>
+            </div>
+
+            <div class="form-group">
+                <label for="role" class="text-a text-dark font-weight-bold">Select Role:</label>
+                <select id="role" name="role" th:errorclass="is-invalid" class="form-control">
+                    <option th:each="r : ${roles}" th:text="${r}"
+                            th:value="${r}" th:selected="${r} == *{role}">
+                        Roles
+                    </option>
+                </select>
+                <p class="invalid-feedback">
+                    Role type is required.
+                </p>
+            </div>
+
+            <button type="submit" class="btn btn-info col-2"> Update User</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,24 +1,24 @@
-package belleza.studio.app.models.entities;
+package belleza.studio.app.models.service;
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import belleza.studio.app.models.entities.enums.RoleNameEnum;
 
-@Entity
-@Table(name = "users")
-public class UserEntity extends BaseEntity {
+public class UserUpdateServiceModel {
 
+    private Long id;
     private String firstName;
     private String lastName;
     private String username;
     private String email;
-    private String password;
-    private UserRoleEntity role;
+    private RoleNameEnum role;
 
-    public UserEntity() {
+    public Long getId() {
+        return id;
     }
 
-    @Column(name = "first_name", nullable = false)
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -27,7 +27,6 @@ public class UserEntity extends BaseEntity {
         this.firstName = firstName;
     }
 
-    @Column(name = "last_name", nullable = false)
     public String getLastName() {
         return lastName;
     }
@@ -36,7 +35,6 @@ public class UserEntity extends BaseEntity {
         this.lastName = lastName;
     }
 
-    @Column(unique = true, nullable = false)
     public String getUsername() {
         return username;
     }
@@ -45,7 +43,6 @@ public class UserEntity extends BaseEntity {
         this.username = username;
     }
 
-    @Column(nullable = false)
     public String getEmail() {
         return email;
     }
@@ -54,33 +51,22 @@ public class UserEntity extends BaseEntity {
         this.email = email;
     }
 
-    @Column(nullable = false)
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    @ManyToOne(cascade = CascadeType.MERGE)
-    public UserRoleEntity getRole() {
+    public RoleNameEnum getRole() {
         return role;
     }
 
-    public void setRole(UserRoleEntity role) {
+    public void setRole(RoleNameEnum role) {
         this.role = role;
     }
 
     @Override
     public String toString() {
-        return "UserEntity{" +
+        return "UserUpdateServiceModel{" +
                 "id" + id + '\'' +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
                 ", role=" + role +
                 '}';
     }
