@@ -98,42 +98,82 @@
                 <form class="form-group text-center">
                     <div class="row">
                         <div class="col-lg-6">
-                            <label class="text-white font-weight-bold">First Name:</label>
-                            <input type="text" name="firstName" class="form-control" placeholder="First name">
+                            <label for="firstName" class="text-white font-weight-bold"><b>First name:</b></label>
+                            <input type="text" id="firstName" name="firstName"
+                                   th:value="*{firstName}"
+                                   th:errorclass="is-invalid"
+                                   class="form-control"
+                                   aria-describedby="firstNameHelpInLine"
+                                   placeholder="Enter First name" required>
+                            <small id="firstNameError"
+                                   class="invalid-feedback text-light form-text bg-danger rounded">
+                                First name length must be more than 3 characters</small>
                         </div>
 
                         <div class="col-lg-6">
-                            <label class="text-white font-weight-bold">Last Name:</label>
-                            <input type="text" name="lastName" class="form-control" placeholder="Last name">
+                            <label for="lastName" class="text-white font-weight-bold"><b>Last name:</b></label>
+                            <input type="text" id="lastName" name="lastName"
+                                   th:value="*{lastName}"
+                                   th:errorclass="is-invalid"
+                                   class="form-control"
+                                   aria-describedby="lastNameHelpInLine"
+                                   placeholder="Enter Last name" required>
+                            <small id="lastNameError"
+                                   class="invalid-feedback text-light form-text bg-danger rounded">
+                                Last name length must be more than 3 characters</small>
                         </div>
                     </div>
                     <br/>
                     <div class="form-group">
-                        <label class="text-white font-weight-bold">Date and time:</label>
-                        <input type="datetime-local" id="date" name="date" style="border-radius: 5px">
+                        <label for="bookedHour" class="text-white font-weight-bold">Date and time:</label>
+                        <input type="datetime-local" id="bookedHour" name="bookedHour"
+                               th:value=""
+                               th:errorclass="is-invalid"
+                               aria-describedby="bookedHourHelpInLine"
+                               placeholder="Please pick date and hour"
+                               style="border-radius: 5px"
+                               required>
+                        <small id="bookedHourError"
+                               class="invalid-feedback text-light form-text bg-danger rounded">
+                            Date cannot be in the past</small>
                     </div>
                     <br/>
                     <div class="form-group">
-                        <label class="text-white font-weight-bold">Telephone number:</label>
+                        <label for="number" class="text-white font-weight-bold">Telephone number:</label>
                         <input id="number" name="number" type="text"
-                               class="form-control"
-                               placeholder="Type your telephone number here">
+                               th:value=""
+                               th:errorclass="is-invalid"
+                               aria-describedby="numberHelpInLine"
+                               placeholder="Please enter your telephone number here"
+                               class="form-control" required>
+                        <small id="numberError"
+                               class="invalid-feedback text-light form-text bg-danger rounded">
+                            Telephone number cannot be empty</small>
                     </div>
                     <br/>
                     <div class="form-group">
                     <label class="text-white font-weight-bold">Image URL</label>
                     <input id="imageUrl" name="imageUrl" type="url"
+                           th:value=""
+                           th:errorclass="is-invalid"
+                           aria-describedby="imageUrlHelpInLine"
                            class="form-control"
-                           placeholder="Put makeup image URL here">
+                           placeholder="Put your image URL here">
                     </div>
                     <br/>
                     <div class="form-group">
                         <label class="text-a text-white font-weight-bold">Service Type:</label>
-                        <select id="makeupType" name="makeupType" class="form-control">
-                            <option value="">- Select service type -</option>
-                            <option each="" th:text="" value="">
-                                Service type
-                            </option>
+                        <select id="serviceTypeId" name="serviceTypeId"
+                                th:errorclass="is-invalid" class="form-control">
+                            <option value="">- Select a service -</option>
+                            <optgroup th:each="brand : ${brands}"
+                                      th:label="${brand.name}"
+                                      label="Brand name">
+                                <option th:each="brandModel : ${brand.models}"
+                                        th:text="${brandModel.name}"
+                                        th:value="${brandModel.id}"
+                                        th:selected="${brandModel.id} == *{modelId}"></option>
+                            </optgroup>
                         </select>
                         <p class="invalid-feedback">
                             Service type is required.

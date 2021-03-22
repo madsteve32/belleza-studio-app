@@ -1,29 +1,27 @@
-package belleza.studio.app.models.entities;
+package belleza.studio.app.models.binding;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "booked_hours")
-public class BookedHoursEntity extends BaseEntity {
+public class BookedHourBindingModel {
 
     private String firstName;
     private String lastName;
     private LocalDateTime bookedDateAndTime;
     private String number;
     private String imageUrl;
-    private ServiceTypeEntity serviceType;
+    private Long serviceTypeId;
 
-    public BookedHoursEntity() {
+    public BookedHourBindingModel() {
     }
 
-    @Column(name = "first_name", nullable = false)
+    @NotEmpty
+    @Size(min = 3, message = "First name must be at least 3 characters.")
     public String getFirstName() {
         return firstName;
     }
@@ -32,7 +30,8 @@ public class BookedHoursEntity extends BaseEntity {
         this.firstName = firstName;
     }
 
-    @Column(name = "last_name", nullable = false)
+    @NotEmpty
+    @Size(min = 3, message = "Last name must be at least 3 characters.")
     public String getLastName() {
         return lastName;
     }
@@ -41,7 +40,6 @@ public class BookedHoursEntity extends BaseEntity {
         this.lastName = lastName;
     }
 
-    @Column(name = "booked_date", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @FutureOrPresent(message = "The date cannot be in the past")
     public LocalDateTime getBookedDateAndTime() {
@@ -52,7 +50,7 @@ public class BookedHoursEntity extends BaseEntity {
         this.bookedDateAndTime = bookedDateAndTime;
     }
 
-    @Column(name = "telephone_number", nullable = false)
+    @NotEmpty(message = "Telephone number cannot be empty.")
     public String getNumber() {
         return number;
     }
@@ -61,7 +59,6 @@ public class BookedHoursEntity extends BaseEntity {
         this.number = number;
     }
 
-    @Column(name = "image_url")
     public String getImageUrl() {
         return imageUrl;
     }
@@ -70,12 +67,11 @@ public class BookedHoursEntity extends BaseEntity {
         this.imageUrl = imageUrl;
     }
 
-    @ManyToOne
-    public ServiceTypeEntity getServiceType() {
-        return serviceType;
+    public Long getServiceTypeId() {
+        return serviceTypeId;
     }
 
-    public void setServiceType(ServiceTypeEntity serviceType) {
-        this.serviceType = serviceType;
+    public void setServiceTypeId(Long serviceTypeId) {
+        this.serviceTypeId = serviceTypeId;
     }
 }
