@@ -2,23 +2,30 @@ package belleza.studio.app.services.impl;
 
 import belleza.studio.app.models.entities.ServiceEntity;
 import belleza.studio.app.models.entities.ServiceTypeEntity;
+import belleza.studio.app.models.view.ServiceTypeViewModel;
+import belleza.studio.app.models.view.ServiceViewModel;
 import belleza.studio.app.repositories.ServiceTypeRepository;
 import belleza.studio.app.repositories.ServicesRepository;
 import belleza.studio.app.services.ServiceEntityService;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ServiceEntityServiceImpl implements ServiceEntityService {
 
     private final ServicesRepository servicesRepository;
     private final ServiceTypeRepository serviceTypeRepository;
+    private final ModelMapper modelMapper;
 
-    public ServiceEntityServiceImpl(ServicesRepository servicesRepository, ServiceTypeRepository serviceTypeRepository) {
+    public ServiceEntityServiceImpl(ServicesRepository servicesRepository, ServiceTypeRepository serviceTypeRepository, ModelMapper modelMapper) {
         this.servicesRepository = servicesRepository;
         this.serviceTypeRepository = serviceTypeRepository;
+        this.modelMapper = modelMapper;
     }
 
     @Override
@@ -122,5 +129,36 @@ public class ServiceEntityServiceImpl implements ServiceEntityService {
                     bridalMakeup, smokeyMakeup, dailyMakeup, customMakeup,
                     haircut, haircutPlusBlowing, painting));
         }
+    }
+
+    @Override
+    public List<ServiceViewModel> getAllServices() {
+        List<ServiceViewModel> result = new ArrayList<>(); // final result
+
+        List<ServiceTypeEntity> allServiceTypes = serviceTypeRepository.findAll();
+
+        allServiceTypes.forEach(serviceType -> {
+            ServiceEntity serviceEntity = serviceType.getService();
+
+            Optional<ServiceViewModel> serviceViewModelOpt = findByName(result, serviceEntity.getName());
+
+            if (serviceViewModelOpt.isEmpty()) {
+                ServiceViewModel serviceViewModel = new ServiceViewModel();
+                modelMapper.map(serviceEntity, serviceViewModel);
+                result.add(serviceViewModel);
+                serviceViewModelOpt = Optional.of(serviceViewModel);
+            }
+
+            ServiceTypeViewModel serviceTypeViewModel = new ServiceTypeViewModel();
+            modelMapper.map(serviceType, serviceTypeViewModel);
+            serviceViewModelOpt.get().addServiceType(serviceTypeViewModel);
+        });
+
+        return result;
+    }
+
+    private Optional<ServiceViewModel> findByName(List<ServiceViewModel> allServices, String name) {
+        return allServices.stream()
+                .filter(s -> s.getName().equals(name)).findAny();
     }
 }
