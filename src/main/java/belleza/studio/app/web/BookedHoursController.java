@@ -56,7 +56,7 @@ public class BookedHoursController {
         BookedHourServiceModel bookedHourServiceModel = modelMapper
                 .map(bookedHourBindingModel, BookedHourServiceModel.class);
 
-        
+
         bookedHourService.saveHour(bookedHourServiceModel);
 
         return "redirect:/home";

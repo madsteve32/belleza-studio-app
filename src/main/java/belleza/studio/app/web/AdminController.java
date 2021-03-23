@@ -46,6 +46,7 @@ public class AdminController {
     public String add(Model model) {
 
         model.addAttribute("roles", RoleNameEnum.values());
+        model.addAttribute("userExistsError", false);
 
         return "register";
     }
