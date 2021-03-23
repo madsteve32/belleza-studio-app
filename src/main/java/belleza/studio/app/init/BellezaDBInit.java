@@ -1,6 +1,6 @@
 package belleza.studio.app.init;
 
-import belleza.studio.app.services.ServiceEntityService;
+import belleza.studio.app.services.StudioFeatureService;
 import belleza.studio.app.services.UserRoleService;
 import belleza.studio.app.services.UserService;
 import org.springframework.boot.CommandLineRunner;
@@ -11,17 +11,17 @@ public class BellezaDBInit implements CommandLineRunner {
 
     private final UserService userService;
     private final UserRoleService userRoleService;
-    private final ServiceEntityService serviceEntityService;
+    private final StudioFeatureService studioFeatureService;
 
-    public BellezaDBInit(UserService userService, UserRoleService userRoleService, ServiceEntityService serviceEntityService) {
+    public BellezaDBInit(UserService userService, UserRoleService userRoleService, StudioFeatureService studioFeatureService) {
         this.userService = userService;
         this.userRoleService = userRoleService;
-        this.serviceEntityService = serviceEntityService;
+        this.studioFeatureService = studioFeatureService;
     }
 
     @Override
     public void run(String... args) throws Exception {
         userService.seedUsers();
-        serviceEntityService.initServices();
+        studioFeatureService.initServices();
     }
 }

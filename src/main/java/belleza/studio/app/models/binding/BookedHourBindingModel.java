@@ -4,7 +4,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
@@ -15,7 +14,7 @@ public class BookedHourBindingModel {
     private LocalDateTime bookedDateAndTime;
     private String number;
     private String imageUrl;
-    private Long serviceTypeId;
+    private Long featureTypeId;
 
     public BookedHourBindingModel() {
     }
@@ -67,11 +66,11 @@ public class BookedHourBindingModel {
         this.imageUrl = imageUrl;
     }
 
-    public Long getServiceTypeId() {
-        return serviceTypeId;
+    public Long getFeatureTypeId() {
+        return featureTypeId;
     }
 
-    public void setServiceTypeId(Long serviceTypeId) {
-        this.serviceTypeId = serviceTypeId;
+    public void setFeatureTypeId(Long featureTypeId) {
+        this.featureTypeId = featureTypeId;
     }
 }

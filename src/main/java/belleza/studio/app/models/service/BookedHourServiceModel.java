@@ -1,7 +1,5 @@
 package belleza.studio.app.models.service;
 
-import belleza.studio.app.models.entities.ServiceTypeEntity;
-
 import java.time.LocalDateTime;
 
 public class BookedHourServiceModel {
@@ -11,6 +9,7 @@ public class BookedHourServiceModel {
     private LocalDateTime bookedDateAndTime;
     private String number;
     private String imageUrl;
+    private Long featureTypeId;
 
     public BookedHourServiceModel() {
     }
@@ -53,5 +52,13 @@ public class BookedHourServiceModel {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public Long getFeatureTypeId() {
+        return featureTypeId;
+    }
+
+    public void setFeatureTypeId(Long featureTypeId) {
+        this.featureTypeId = featureTypeId;
     }
 }

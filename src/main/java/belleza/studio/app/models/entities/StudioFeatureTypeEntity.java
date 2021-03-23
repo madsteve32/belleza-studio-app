@@ -8,13 +8,13 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "service_type")
-public class ServiceTypeEntity extends BaseEntity {
+public class StudioFeatureTypeEntity extends BaseEntity {
 
     private String name;
     private BigDecimal price;
-    private ServiceEntity service;
+    private StudioFeatureEntity service;
 
-    public ServiceTypeEntity() {
+    public StudioFeatureTypeEntity() {
     }
 
     @Column(nullable = false, unique = true)
@@ -36,11 +36,11 @@ public class ServiceTypeEntity extends BaseEntity {
     }
 
     @ManyToOne
-    public ServiceEntity getService() {
+    public StudioFeatureEntity getService() {
         return service;
     }
 
-    public void setService(ServiceEntity service) {
+    public void setService(StudioFeatureEntity service) {
         this.service = service;
     }
 }

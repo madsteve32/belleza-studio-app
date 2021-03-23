@@ -1,12 +1,12 @@
 package belleza.studio.app.services.impl;
 
-import belleza.studio.app.models.entities.ServiceEntity;
-import belleza.studio.app.models.entities.ServiceTypeEntity;
-import belleza.studio.app.models.view.ServiceTypeViewModel;
-import belleza.studio.app.models.view.ServiceViewModel;
+import belleza.studio.app.models.entities.StudioFeatureEntity;
+import belleza.studio.app.models.entities.StudioFeatureTypeEntity;
+import belleza.studio.app.models.view.StudioFeatureTypeViewModel;
+import belleza.studio.app.models.view.StudioFeatureViewModel;
 import belleza.studio.app.repositories.ServiceTypeRepository;
 import belleza.studio.app.repositories.ServicesRepository;
-import belleza.studio.app.services.ServiceEntityService;
+import belleza.studio.app.services.StudioFeatureService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -16,13 +16,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ServiceEntityServiceImpl implements ServiceEntityService {
+public class StudioFeatureServiceImpl implements StudioFeatureService {
 
     private final ServicesRepository servicesRepository;
     private final ServiceTypeRepository serviceTypeRepository;
     private final ModelMapper modelMapper;
 
-    public ServiceEntityServiceImpl(ServicesRepository servicesRepository, ServiceTypeRepository serviceTypeRepository, ModelMapper modelMapper) {
+    public StudioFeatureServiceImpl(ServicesRepository servicesRepository, ServiceTypeRepository serviceTypeRepository, ModelMapper modelMapper) {
         this.servicesRepository = servicesRepository;
         this.serviceTypeRepository = serviceTypeRepository;
         this.modelMapper = modelMapper;
@@ -31,95 +31,95 @@ public class ServiceEntityServiceImpl implements ServiceEntityService {
     @Override
     public void initServices() {
         if (servicesRepository.count() == 0) {
-            ServiceEntity manicure = new ServiceEntity();
+            StudioFeatureEntity manicure = new StudioFeatureEntity();
             manicure.setName("Manicure");
 
-            ServiceEntity pedicure = new ServiceEntity();
+            StudioFeatureEntity pedicure = new StudioFeatureEntity();
             pedicure.setName("Pedicure");
 
-            ServiceEntity makeup = new ServiceEntity();
+            StudioFeatureEntity makeup = new StudioFeatureEntity();
             makeup.setName("Makeup");
 
-            ServiceEntity hairstyle = new ServiceEntity();
+            StudioFeatureEntity hairstyle = new StudioFeatureEntity();
             hairstyle.setName("Hairstyle");
 
             servicesRepository.saveAll(List.of(manicure, pedicure, makeup, hairstyle));
 
-            ServiceTypeEntity frenchManicure = new ServiceTypeEntity();
+            StudioFeatureTypeEntity frenchManicure = new StudioFeatureTypeEntity();
             frenchManicure.setName("French manicure");
             frenchManicure.setPrice(BigDecimal.valueOf(25.00));
             frenchManicure.setService(manicure);
 
-            ServiceTypeEntity gelPolish = new ServiceTypeEntity();
+            StudioFeatureTypeEntity gelPolish = new StudioFeatureTypeEntity();
             gelPolish.setName("Gel Polish");
             gelPolish.setPrice(BigDecimal.valueOf(25.00));
             gelPolish.setService(manicure);
 
-            ServiceTypeEntity threeDPolish = new ServiceTypeEntity();
+            StudioFeatureTypeEntity threeDPolish = new StudioFeatureTypeEntity();
             threeDPolish.setName("3D Polish");
             threeDPolish.setPrice(BigDecimal.valueOf(35.00));
             threeDPolish.setService(manicure);
 
-            ServiceTypeEntity repairPolish = new ServiceTypeEntity();
+            StudioFeatureTypeEntity repairPolish = new StudioFeatureTypeEntity();
             repairPolish.setName("Repair manicures");
             repairPolish.setPrice(BigDecimal.valueOf(15.00));
             repairPolish.setService(manicure);
 
             // Pedicure
 
-            ServiceTypeEntity frenchPedicure = new ServiceTypeEntity();
+            StudioFeatureTypeEntity frenchPedicure = new StudioFeatureTypeEntity();
             frenchPedicure.setName("French pedicure");
             frenchPedicure.setPrice(BigDecimal.valueOf(35.00));
             frenchPedicure.setService(pedicure);
 
-            ServiceTypeEntity gelPolishPedicure = new ServiceTypeEntity();
+            StudioFeatureTypeEntity gelPolishPedicure = new StudioFeatureTypeEntity();
             gelPolishPedicure.setName("Gel Polish pedicure");
             gelPolishPedicure.setPrice(BigDecimal.valueOf(35.00));
             gelPolishPedicure.setService(pedicure);
 
-            ServiceTypeEntity threeDPolishPedicure = new ServiceTypeEntity();
+            StudioFeatureTypeEntity threeDPolishPedicure = new StudioFeatureTypeEntity();
             threeDPolishPedicure.setName("3D Polish pedicure");
             threeDPolishPedicure.setPrice(BigDecimal.valueOf(45.00));
             threeDPolishPedicure.setService(pedicure);
 
-            ServiceTypeEntity repairPolishPedicure = new ServiceTypeEntity();
+            StudioFeatureTypeEntity repairPolishPedicure = new StudioFeatureTypeEntity();
             repairPolishPedicure.setName("Repair pedicures");
             repairPolishPedicure.setPrice(BigDecimal.valueOf(20.00));
             repairPolishPedicure.setService(pedicure);
 
             // Makeups
-            ServiceTypeEntity bridalMakeup = new ServiceTypeEntity();
+            StudioFeatureTypeEntity bridalMakeup = new StudioFeatureTypeEntity();
             bridalMakeup.setName("Bridal makeup");
             bridalMakeup.setPrice(BigDecimal.valueOf(70.00));
             bridalMakeup.setService(makeup);
 
-            ServiceTypeEntity smokeyMakeup = new ServiceTypeEntity();
+            StudioFeatureTypeEntity smokeyMakeup = new StudioFeatureTypeEntity();
             smokeyMakeup.setName("Smokey makeup");
             smokeyMakeup.setPrice(BigDecimal.valueOf(40.00));
             smokeyMakeup.setService(makeup);
 
-            ServiceTypeEntity dailyMakeup = new ServiceTypeEntity();
+            StudioFeatureTypeEntity dailyMakeup = new StudioFeatureTypeEntity();
             dailyMakeup.setName("Daily makeup");
             dailyMakeup.setPrice(BigDecimal.valueOf(30.00));
             dailyMakeup.setService(makeup);
 
-            ServiceTypeEntity customMakeup = new ServiceTypeEntity();
+            StudioFeatureTypeEntity customMakeup = new StudioFeatureTypeEntity();
             customMakeup.setName("Custom makeup with lashes");
             customMakeup.setPrice(BigDecimal.valueOf(55.00));
             customMakeup.setService(makeup);
 
             // Hairstyle
-            ServiceTypeEntity haircut = new ServiceTypeEntity();
+            StudioFeatureTypeEntity haircut = new StudioFeatureTypeEntity();
             haircut.setName("Haircut");
             haircut.setPrice(BigDecimal.valueOf(25.00));
             haircut.setService(hairstyle);
 
-            ServiceTypeEntity haircutPlusBlowing = new ServiceTypeEntity();
+            StudioFeatureTypeEntity haircutPlusBlowing = new StudioFeatureTypeEntity();
             haircutPlusBlowing.setName("Haircut plus blowing");
             haircutPlusBlowing.setPrice(BigDecimal.valueOf(35.00));
             haircutPlusBlowing.setService(hairstyle);
 
-            ServiceTypeEntity painting = new ServiceTypeEntity();
+            StudioFeatureTypeEntity painting = new StudioFeatureTypeEntity();
             painting.setName("Painting");
             painting.setPrice(BigDecimal.valueOf(40.00));
             painting.setService(hairstyle);
@@ -132,32 +132,32 @@ public class ServiceEntityServiceImpl implements ServiceEntityService {
     }
 
     @Override
-    public List<ServiceViewModel> getAllServices() {
-        List<ServiceViewModel> result = new ArrayList<>(); // final result
+    public List<StudioFeatureViewModel> getAllFeatures() {
+        List<StudioFeatureViewModel> result = new ArrayList<>(); // final result
 
-        List<ServiceTypeEntity> allServiceTypes = serviceTypeRepository.findAll();
+        List<StudioFeatureTypeEntity> allServiceTypes = serviceTypeRepository.findAll();
 
         allServiceTypes.forEach(serviceType -> {
-            ServiceEntity serviceEntity = serviceType.getService();
+            StudioFeatureEntity studioFeatureEntity = serviceType.getService();
 
-            Optional<ServiceViewModel> serviceViewModelOpt = findByName(result, serviceEntity.getName());
+            Optional<StudioFeatureViewModel> serviceViewModelOpt = findByName(result, studioFeatureEntity.getName());
 
             if (serviceViewModelOpt.isEmpty()) {
-                ServiceViewModel serviceViewModel = new ServiceViewModel();
-                modelMapper.map(serviceEntity, serviceViewModel);
-                result.add(serviceViewModel);
-                serviceViewModelOpt = Optional.of(serviceViewModel);
+                StudioFeatureViewModel studioFeatureViewModel = new StudioFeatureViewModel();
+                modelMapper.map(studioFeatureEntity, studioFeatureViewModel);
+                result.add(studioFeatureViewModel);
+                serviceViewModelOpt = Optional.of(studioFeatureViewModel);
             }
 
-            ServiceTypeViewModel serviceTypeViewModel = new ServiceTypeViewModel();
-            modelMapper.map(serviceType, serviceTypeViewModel);
-            serviceViewModelOpt.get().addServiceType(serviceTypeViewModel);
+            StudioFeatureTypeViewModel studioFeatureTypeViewModel = new StudioFeatureTypeViewModel();
+            modelMapper.map(serviceType, studioFeatureTypeViewModel);
+            serviceViewModelOpt.get().addServiceType(studioFeatureTypeViewModel);
         });
 
         return result;
     }
 
-    private Optional<ServiceViewModel> findByName(List<ServiceViewModel> allServices, String name) {
+    private Optional<StudioFeatureViewModel> findByName(List<StudioFeatureViewModel> allServices, String name) {
         return allServices.stream()
                 .filter(s -> s.getName().equals(name)).findAny();
     }

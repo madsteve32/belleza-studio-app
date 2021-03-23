@@ -6,11 +6,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "services")
-public class ServiceEntity extends BaseEntity {
+public class StudioFeatureEntity extends BaseEntity {
 
     private String name;
 
-    public ServiceEntity() {
+    public StudioFeatureEntity() {
     }
 
     @Column(nullable = false, unique = true)

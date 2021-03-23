@@ -18,7 +18,7 @@ public class BookedHoursEntity extends BaseEntity {
     private LocalDateTime bookedDateAndTime;
     private String number;
     private String imageUrl;
-    private ServiceTypeEntity serviceType;
+    private StudioFeatureTypeEntity serviceType;
 
     public BookedHoursEntity() {
     }
@@ -71,11 +71,11 @@ public class BookedHoursEntity extends BaseEntity {
     }
 
     @ManyToOne
-    public ServiceTypeEntity getServiceType() {
+    public StudioFeatureTypeEntity getServiceType() {
         return serviceType;
     }
 
-    public void setServiceType(ServiceTypeEntity serviceType) {
+    public void setServiceType(StudioFeatureTypeEntity serviceType) {
         this.serviceType = serviceType;
     }
 }
