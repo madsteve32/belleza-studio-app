@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Booking Form</title>
@@ -95,18 +95,22 @@
         <div class="col-lg-6">
             <div id="ui">
                 <h1 class="text-center">BOOK AN HOUR</h1>
-                <form method="POST" th:action="@{/booking/hour}"
+                <form th:method="POST" th:action="@{/booking/hour}"
                       th:object="${bookedHourBindingModel}"
                       class="form-group text-center">
+                    <input type="hidden"
+                           th:name="${_csrf.parameterName}"
+                           th:value="${_csrf.token}"/>
                     <div class="row">
                         <div class="col-lg-6">
                             <label for="firstName" class="text-white font-weight-bold"><b>First name:</b></label>
                             <input type="text" id="firstName" name="firstName"
                                    th:value="*{firstName}"
                                    th:errorclass="is-invalid"
+                                   minlength="3" maxlength="20"
                                    class="form-control"
                                    aria-describedby="firstNameHelpInLine"
-                                   placeholder="Enter First name" required>
+                                   placeholder="Enter First name">
                             <small id="firstNameError"
                                    class="invalid-feedback text-light form-text bg-danger rounded">
                                 First name length must be more than 3 characters</small>
@@ -117,9 +121,10 @@
                             <input type="text" id="lastName" name="lastName"
                                    th:value="*{lastName}"
                                    th:errorclass="is-invalid"
+                                   minlength="3" maxlength="20"
                                    class="form-control"
                                    aria-describedby="lastNameHelpInLine"
-                                   placeholder="Enter Last name" required>
+                                   placeholder="Enter Last name">
                             <small id="lastNameError"
                                    class="invalid-feedback text-light form-text bg-danger rounded">
                                 Last name length must be more than 3 characters</small>
@@ -129,13 +134,13 @@
                     <div class="form-group">
                         <label for="bookedDateAndTime" class="text-white font-weight-bold">Date and time:</label>
                         <input type="datetime-local" id="bookedDateAndTime" name="bookedDateAndTime"
-                               th:value="*{bookedDateAndTime}"
+                               th:field="*{bookedDateAndTime}"
                                th:errorclass="is-invalid"
                                aria-describedby="bookedHourHelpInLine"
                                placeholder="Please pick date and hour"
                                style="border-radius: 5px"
                                required>
-                        <small id="bookedHourError"
+                        <small id="bookedDateAndTimeError"
                                class="invalid-feedback text-light form-text bg-danger rounded">
                             Date cannot be in the past</small>
                     </div>
