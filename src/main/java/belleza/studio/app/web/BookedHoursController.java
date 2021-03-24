@@ -68,4 +68,11 @@ public class BookedHoursController {
 
         return "redirect:/home";
     }
+
+    @GetMapping("/list")
+    public String bookedHours(Model model) {
+        model.addAttribute("bookedHours", bookedHourService.getAllBookedHours());
+
+        return "booked-hours-list";
+    }
 }
