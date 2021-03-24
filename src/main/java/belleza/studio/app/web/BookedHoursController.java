@@ -50,7 +50,14 @@ public class BookedHoursController {
             redirectAttributes.addFlashAttribute("bookedHourBindingModel", bookedHourBindingModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.bookedHourBindingModel", bindingResult);
 
-            return "book-an-hour";
+            return "redirect:/booking/hour";
+        }
+
+        if (bookedHourService.isBooked(bookedHourBindingModel.getBookedDateAndTime())) {
+            redirectAttributes.addFlashAttribute("bookedHourBindingModel", bookedHourBindingModel);
+            redirectAttributes.addFlashAttribute("dateIsBookedError", true);
+
+            return "redirect:/booking/hour";
         }
 
         BookedHourServiceModel bookedHourServiceModel = modelMapper

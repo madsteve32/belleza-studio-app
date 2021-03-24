@@ -99,7 +99,13 @@
                 <div id="ui">
                     <h1 class="text-center font-weight-bold">REGISTRATION</h1>
                     <p class="text-white font-weight-bold" style="text-align: center">Please fill in this form to create an account.</p>
-                    <form class="form-group text-center" th:action="@{/add-user}" th:object="${registrationBindingModel}" method="POST">
+                    <form class="form-group text-center"
+                          th:action="@{/add-user}"
+                          th:object="${registrationBindingModel}"
+                          method="POST">
+                        <input type="hidden"
+                               th:name="${_csrf.parameterName}"
+                               th:value="${_csrf.token}"/>
                         <div class="row">
                             <div class="col-lg-6">
                                 <label for="firstName" class="text-white font-weight-bold"><b>First name:</b></label>
@@ -143,7 +149,7 @@
                                    class="invalid-feedback text-light form-text bg-danger rounded">
                                 Username length must be more than 3 characters</small>
                             <small th:if="${userExistsError}" id="usernameUniqueError"
-                                   class="text-light form-text bg-danger rounded">Username is already taken</small>
+                                   class="text-light form-text bg-danger rounded" role="alert">Username is already taken</small>
                         </div>
                         <br/>
                         <label for="password" class="text-white font-weight-bold"><b>Password:</b></label>

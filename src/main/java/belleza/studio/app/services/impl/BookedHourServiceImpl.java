@@ -7,6 +7,8 @@ import belleza.studio.app.services.BookedHourService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class BookedHourServiceImpl implements BookedHourService {
 
@@ -24,5 +26,10 @@ public class BookedHourServiceImpl implements BookedHourService {
                 .map(bookedHourServiceModel, BookedHoursEntity.class);
 
         bookedHoursRepository.save(bookedHoursEntity);
+    }
+
+    @Override
+    public boolean isBooked(LocalDateTime bookedDateAndTime) {
+        return bookedHoursRepository.findByBookedDateAndTime(bookedDateAndTime).isPresent();
     }
 }

@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -66,14 +67,7 @@
 </head>
 <body>
 
-<div class="navbar">
-    <img class="logo" src="/img/eyebrow.png" alt="logo">
-    <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a>
-    <a href="#"><i class="fa fa-fw fa-bookmark"></i> My makeups</a>
-    <a href="#"><i class="fa fa-fw fa-calendar"></i> Booked hours</a>
-    <a href="/users/login"><i class="fa fa-fw fa-user"></i> Login</a>
-    <a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a>
-</div>
+<div th:replace="fragments/fragment :: nav"></div>
 
 <main class="p-5 align-content-center bg-blur my-main">
     <h5 class="text-right text-dark mt-5">Welcome, <span text=""></span></h5>
@@ -81,7 +75,9 @@
     <div class="row">
         <div class="col-md-3">
             <div class="card mb-4 box-shadow">
-                <img src="/img/2.jpg" class="card-img-top" alt="Thumbnail [100%x225]"
+                <img src="/img/2.jpg"
+                     class="card-img-top"
+                     alt="Thumbnail [100%x225]"
                      data-holder-rendered="true"
                      style="height: 225px; width: 100%; display: block;">
                 <div class="card-body">
@@ -89,7 +85,6 @@
                         <p class="card-text border-bottom ">Name: Name of client</p>
                         <p class="card-text border-bottom ">Date and time: Booked date and time for service</p>
                         <p class="card-text border-bottom ">Service type: Type of service</p>
-                        <p class="card-text border-bottom">Lashes: yes/no</p>
                     </div>
                     <br/>
                     <div class="d-flex justify-content-between align-items-center">
@@ -106,10 +101,6 @@
 
 </body>
 
-<footer class="footer bg-blur">
-    <div class="footer">
-        <h2>&copy;Belleza Makeup Studio 2021. All rights reserved.</h2>
-    </div>
-</footer>
+<footer th:replace="fragments/fragment :: footer"></footer>
 
 </html>

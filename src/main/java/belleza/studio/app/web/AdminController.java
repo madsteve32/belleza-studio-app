@@ -44,9 +44,7 @@ public class AdminController {
 
     @GetMapping("/add-user")
     public String add(Model model) {
-
         model.addAttribute("roles", RoleNameEnum.values());
-        model.addAttribute("userExistsError", false);
 
         return "register";
     }
@@ -59,14 +57,14 @@ public class AdminController {
             redirectAttributes.addFlashAttribute("userRegistrationBindingModel", userRegistrationBindingModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userRegistrationBindingModel", bindingResult);
 
-            return "register";
+            return "redirect:/add-user";
         }
 
         if (userService.usernameExists(userRegistrationBindingModel.getUsername())) {
             redirectAttributes.addFlashAttribute("userRegistrationBindingModel", userRegistrationBindingModel);
             redirectAttributes.addFlashAttribute("userExistsError", true);
 
-            return "register";
+            return "redirect:/add-user";
         }
 
         UserRegistrationServiceModel userRegistrationServiceModel = modelMapper

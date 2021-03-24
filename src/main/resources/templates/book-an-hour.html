@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Booking Form</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 
@@ -141,8 +140,10 @@
                                style="border-radius: 5px"
                                required>
                         <small id="bookedDateAndTimeError"
-                               class="invalid-feedback text-light form-text bg-danger rounded">
+                               class="invalid-feedback text-light form-text bg-danger rounded" role="alert">
                             Date cannot be in the past</small>
+                        <small th:if="${dateIsBookedError}" id="dateIsBookedError"
+                               class="text-light form-text bg-danger rounded" role="alert">This hour is already booked</small>
                     </div>
                     <br/>
                     <div class="form-group">
