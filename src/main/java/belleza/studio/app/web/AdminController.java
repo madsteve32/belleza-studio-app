@@ -1,5 +1,6 @@
 package belleza.studio.app.web;
 
+import belleza.studio.app.models.binding.BookedHourBindingModel;
 import belleza.studio.app.models.binding.UserRegistrationBindingModel;
 import belleza.studio.app.models.entities.UserEntity;
 import belleza.studio.app.models.entities.enums.RoleNameEnum;
@@ -37,13 +38,14 @@ public class AdminController {
         return "admin-panel";
     }
 
-    @ModelAttribute("registrationBindingModel")
-    public UserRegistrationBindingModel createBindingModel() {
+    @ModelAttribute("userRegistrationBindingModel")
+    public UserRegistrationBindingModel userRegistrationBindingModel() {
         return new UserRegistrationBindingModel();
     }
 
     @GetMapping("/add-user")
     public String add(Model model) {
+
         model.addAttribute("roles", RoleNameEnum.values());
 
         return "register";
@@ -63,6 +65,8 @@ public class AdminController {
         if (userService.usernameExists(userRegistrationBindingModel.getUsername())) {
             redirectAttributes.addFlashAttribute("userRegistrationBindingModel", userRegistrationBindingModel);
             redirectAttributes.addFlashAttribute("userExistsError", true);
+
+            System.out.println("user exist error");
 
             return "redirect:/add-user";
         }

@@ -76,8 +76,8 @@
 <main class="p-5 align-content-center bg-blur my-main">
     <h5 class="text-right text-dark mt-5">Welcome, <span sec:authentication="name"></span></h5>
     <h2  class="text-dark border-bottom">Booked hours: </h2>
-    <div class="offers row mx-auto d-flex flex-row justify-content-center">
-        <div class="col-md-3">
+    <div class="container">
+        <div class="col-md-3 col-sm-6">
             <div th:each="bookedHour : ${bookedHours}" th:object="${bookedHour}" class="card mb-4 box-shadow">
                 <img th:src="*{imageUrl}"
                      class="card-img-top"

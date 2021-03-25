@@ -57,6 +57,8 @@ public class BookedHoursController {
             redirectAttributes.addFlashAttribute("bookedHourBindingModel", bookedHourBindingModel);
             redirectAttributes.addFlashAttribute("dateIsBookedError", true);
 
+            System.out.println();
+
             return "redirect:/booking/hour";
         }
 
