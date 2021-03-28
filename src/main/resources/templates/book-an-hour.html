@@ -68,11 +68,7 @@
         }
 
         .footer {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 2.5rem;
-            padding: 50px;
+            padding: 20px;
             text-align: center;
             background: #e4606d;
         }
@@ -185,7 +181,7 @@
                                       th:label="${feature.name}"
                                       label="Feature name">
                                 <option th:each="featureType : ${feature.serviceTypes}"
-                                        th:text="${featureType.name}"
+                                        th:text="${featureType.name + ' - ' + featureType.price + 'лв.'}"
                                         th:value="${featureType.id}"
                                         th:selected="${featureType.id} == *{featureTypeId}"></option>
                             </optgroup>

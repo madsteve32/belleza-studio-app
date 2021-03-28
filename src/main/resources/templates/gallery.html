@@ -1,225 +1,229 @@
 <!DOCTYPE html>
-<html>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
-<style>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-    /* NAVBAR */
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Home page</title>
+    <style>
+        body {
+            background-image: url(/img/blzmakeup.jpg);
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            height: 100vh;
+        }
 
-    body {
-        background-image: url(/img/blzmakeup.jpg);
-        background-size: cover;
-        background-position: center center;
-        background-attachment: fixed;
-        height: 100vh;
-    }
+        .navbar {
+            width: 100%;
+            padding: 15px;
+            border-radius: 20px;
+            margin: auto;
+            background-color: #e4606d;
+            overflow: auto;
+        }
 
-    .navbar {
-        width: 100%;
-        padding: 15px;
-        border-radius: 20px;
-        margin: auto;
-        background-color: #e4606d;
-        overflow: auto;
-    }
+        .navbar a {
+            float: left;
+            padding: 12px;
+            color: white;
+            text-decoration: none;
+            font-size: 17px;
+        }
 
-    .navbar a {
-        float: left;
-        padding: 12px;
-        color: white;
-        text-decoration: none;
-        font-size: 17px;
-    }
+        .navbar a:hover {
+            background-color: #A50965;
+            border-radius: 20px;
+            opacity: 0.9;
+        }
 
-    .navbar a:hover {
-        background-color: #A50965;
-        border-radius: 20px;
-        opacity: 0.9;
-    }
+        .navbar .logo {
+            float: left;
+            width: 40px;
+        }
 
-    .navbar .logo {
-        float: left;
-        width: 40px;
-    }
+        .active {
+            background-color: #A50965;
+            border-radius: 20px;
+        }
 
-    .active {
-        background-color: #A50965;
-        border-radius: 20px;
-    }
+        @media screen and (max-width: 500px) {
+            .navbar a {
+                float: none;
+                display: block;
+            }
+        }
 
-    /* NAVBAR */
+        .footer {
+            padding: 20px;
+            text-align: center;
+            background: #e4606d;
+        }
 
-    * {
-        box-sizing: border-box;
-    }
+        /*-----------SLIDE IMAGES------------*/
 
-    img {
-        vertical-align: middle;
-    }
+        * {box-sizing: border-box}
+        body {font-family: Verdana, sans-serif; margin:0}
+        .mySlides {display: none}
+        img {vertical-align: middle;}
 
-    /* Position the image container (needed to position the left and right arrows) */
-    .container {
-        position: relative;
-    }
+        /* Slideshow container */
+        .slideshow-container1 {
+            max-width: 1000px;
+            position: relative;
+            margin: auto;
+            margin-top: 2em;
+        }
 
-    /* Hide the images by default */
-    .mySlides {
-        display: none;
-    }
+        /* Next & previous buttons */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
 
-    /* Add a pointer when hovering over the thumbnail images */
-    .cursor {
-        cursor: pointer;
-    }
+        /* Position the "next button" to the right */
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
 
-    /* Next & previous buttons */
-    .prev,
-    .next {
-        cursor: pointer;
-        position: absolute;
-        top: 40%;
-        width: auto;
-        padding: 16px;
-        margin-top: -50px;
-        color: white;
-        font-weight: bold;
-        font-size: 20px;
-        border-radius: 0 3px 3px 0;
-        user-select: none;
-        -webkit-user-select: none;
-    }
+        /* On hover, add a black background color with a little bit see-through */
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
 
-    /* Position the "next button" to the right */
-    .next {
-        right: 0;
-        border-radius: 3px 0 0 3px;
-    }
+        /* Caption text */
+        .text {
+            color: #f2f2f2;
+            font-size: 15px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+        }
 
-    /* On hover, add a black background color with a little bit see-through */
-    .prev:hover,
-    .next:hover {
-        background-color: rgba(0, 0, 0, 0.8);
-    }
+        /* Number text (1/3 etc) */
+        .numbertext {
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+        }
 
-    /* Number text (1/3 etc) */
-    .numbertext {
-        color: #f2f2f2;
-        font-size: 12px;
-        padding: 8px 12px;
-        position: absolute;
-        top: 0;
-    }
+        /* The dots/bullets/indicators */
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
 
-    /* Container for image text */
-    .caption-container {
-        text-align: center;
-        background-color: #222;
-        padding: 2px 16px;
-        color: white;
-    }
+        .active, .dot:hover {
+            background-color: #717171;
+        }
 
-    .row:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
+        /* Fading animation */
+        .fade {
+            -webkit-animation-name: fade;
+            -webkit-animation-duration: 1.5s;
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
 
-    /* Six columns side by side */
-    .column {
-        float: left;
-        width: 16.66%;
-    }
+        @-webkit-keyframes fade {
+            from {opacity: .4}
+            to {opacity: 1}
+        }
 
-    /* Add a transparency effect for thumnbail images */
-    .demo {
-        opacity: 0.6;
-    }
+        @keyframes fade {
+            from {opacity: .4}
+            to {opacity: 1}
+        }
 
-    .active,
-    .demo:hover {
-        opacity: 1;
-    }
+        /* On smaller screens, decrease text size */
+        @media only screen and (max-width: 300px) {
+            .prev, .next,.text {font-size: 11px}
+        }
 
-    .footer {
-        padding: 20px;
-        text-align: center;
-        background: #e4606d;
-    }
-</style>
+        .fade:not(.show) {
+            opacity: 100;
+        }
+
+        /*--------END SLIDE IMAGES--------*/
+
+    </style>
+</head>
 <body>
 
-<div class="navbar">
-    <img class="logo" src="/img/eyebrow.png" alt="logo">
-    <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a>
-    <a href="#"><i class="fa fa-fw fa-bookmark"></i> My makeups</a>
-    <a href="/makeup-list"><i class="fa fa-fw fa-calendar"></i> Booked hours</a>
-    <a href="/users/login"><i class="fa fa-fw fa-user"></i> Login</a>
-    <a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a>
+<div th:replace="fragments/fragment :: nav"></div>
+
+<!-- Slideshow container -->
+<div style="text-align: center" class="slideshow-container1">
+
+    <div class="mySlides fade">
+        <div class="numbertext">1 / 7</div>
+        <img src="/img/1.jpg" style="height: 400px; border-radius: 10px">
+    </div>
+
+    <div class="mySlides fade">
+        <div class="numbertext">2 / 7</div>
+        <img src="/img/2.jpg" style="height: 400px; border-radius: 10px">
+    </div>
+
+    <div class="mySlides fade">
+        <div class="numbertext">3 / 7</div>
+        <img src="/img/3.jpg" style="height: 400px; border-radius: 10px">
+    </div>
+
+    <div class="mySlides fade">
+        <div class="numbertext">4 / 7</div>
+        <img src="/img/4.jpg" style="height: 400px; border-radius: 10px">
+    </div>
+
+    <div class="mySlides fade">
+        <div class="numbertext">5 / 7</div>
+        <img src="/img/5.jpg" style="height: 400px; border-radius: 10px">
+    </div>
+
+    <div class="mySlides fade">
+        <div class="numbertext">6 / 7</div>
+        <img src="/img/6.jpg" style="height: 400px; border-radius: 10px">
+    </div>
+
+    <div class="mySlides fade">
+        <div class="numbertext">7 / 7</div>
+        <img src="/img/7.jpg" style="height: 400px; border-radius: 10px">
+    </div>
 </div>
+<br/>
 
-<h2 class="text-a text-white font-weight-bold" style="text-align: center">Makeup Gallery</h2>
-
-<div class="container">
-    <div class="mySlides">
-        <div class="numbertext">1 / 6</div>
-        <img src="/img/1.jpg" style="width:100%">
-    </div>
-
-    <div class="mySlides">
-        <div class="numbertext">2 / 6</div>
-        <img src="/img/2.jpg" style="width:100%">
-    </div>
-
-    <div class="mySlides">
-        <div class="numbertext">3 / 6</div>
-        <img src="/img/3.jpg" style="width:100%">
-    </div>
-
-    <div class="mySlides">
-        <div class="numbertext">4 / 6</div>
-        <img src="/img/4.jpg" style="width:100%">
-    </div>
-
-    <div class="mySlides">
-        <div class="numbertext">5 / 6</div>
-        <img src="/img/5.jpg" style="width:100%">
-    </div>
-
-    <div class="mySlides">
-        <div class="numbertext">6 / 6</div>
-        <img src="/img/6.jpg" style="width:100%">
-    </div>
-
-    <a class="prev" onclick="plusSlides(-1)">❮</a>
-    <a class="next" onclick="plusSlides(1)">❯</a>
-
-    <div class="caption-container">
-        <p id="caption"></p>
-    </div>
-
-    <div class="row">
-        <div class="column">
-            <img class="demo cursor" src="img_woods.jpg" style="width:100%" onclick="currentSlide(1)" alt="The Woods">
-        </div>
-        <div class="column">
-            <img class="demo cursor" src="img_5terre.jpg" style="width:100%" onclick="currentSlide(2)" alt="Cinque Terre">
-        </div>
-        <div class="column">
-            <img class="demo cursor" src="img_mountains.jpg" style="width:100%" onclick="currentSlide(3)" alt="Mountains and fjords">
-        </div>
-        <div class="column">
-            <img class="demo cursor" src="img_lights.jpg" style="width:100%" onclick="currentSlide(4)" alt="Northern Lights">
-        </div>
-        <div class="column">
-            <img class="demo cursor" src="img_nature.jpg" style="width:100%" onclick="currentSlide(5)" alt="Nature and sunrise">
-        </div>
-        <div class="column">
-            <img class="demo cursor" src="img_snow.jpg" style="width:100%" onclick="currentSlide(6)" alt="Snowy Mountains">
-        </div>
-    </div>
+<div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+    <span class="dot" onclick="currentSlide(4)"></span>
+    <span class="dot" onclick="currentSlide(5)"></span>
+    <span class="dot" onclick="currentSlide(6)"></span>
+    <span class="dot" onclick="currentSlide(7)"></span>
 </div>
 
 <script>
@@ -237,8 +241,7 @@
     function showSlides(n) {
         var i;
         var slides = document.getElementsByClassName("mySlides");
-        var dots = document.getElementsByClassName("demo");
-        var captionText = document.getElementById("caption");
+        var dots = document.getElementsByClassName("dot");
         if (n > slides.length) {slideIndex = 1}
         if (n < 1) {slideIndex = slides.length}
         for (i = 0; i < slides.length; i++) {
@@ -249,16 +252,10 @@
         }
         slides[slideIndex-1].style.display = "block";
         dots[slideIndex-1].className += " active";
-        captionText.innerHTML = dots[slideIndex-1].alt;
     }
 </script>
-
 </body>
 
-<footer class="footer bg-blur">
-    <div class="footer">
-        <h2>&copy;Belleza Makeup Studio 2021. All rights reserved.</h2>
-    </div>
-</footer>
+<footer th:replace="fragments/fragment :: footer"></footer>
 
 </html>

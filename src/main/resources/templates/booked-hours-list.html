@@ -57,11 +57,7 @@
         /* NAV END */
 
         .footer {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 2.5rem;
-            padding: 50px;
+            padding: 20px;
             text-align: center;
             background: #e4606d;
         }
@@ -78,9 +74,10 @@
 <main class="p-5 align-content-center bg-blur my-main">
     <h5 class="text-right text-dark mt-5">Welcome, <span sec:authentication="name"></span></h5>
     <h2  class="text-dark border-bottom">Booked hours: </h2>
-    <div class="container">
-        <div class="col-md-3 col-sm-6">
-            <div th:each="bookedHour : ${bookedHours}" th:object="${bookedHour}" class="card mb-4 box-shadow">
+    <div class="container" style="width: 100% !important;">
+        <div class="row" style="column-gap: 40px">
+            <div th:each="bookedHour : ${bookedHours}" th:object="${bookedHour}"
+                 class="card mb-4 box-shadow col-md-3 col-sm-4">
                 <img th:src="*{imageUrl}"
                      class="card-img-top"
                      alt="Thumbnail [100%x225]"

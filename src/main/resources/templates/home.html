@@ -58,11 +58,7 @@
         }
 
         .footer {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 2.5rem;
-            padding: 50px;
+            padding: 20px;
             text-align: center;
             background: #e4606d;
         }
@@ -263,10 +259,6 @@
 </script>
 </body>
 
-<footer class="footer bg-blur">
-    <div class="footer">
-        <h2>&copy;Belleza Makeup Studio 2021. All rights reserved.</h2>
-    </div>
-</footer>
+<footer th:replace="fragments/fragment :: footer"></footer>
 
 </html>
