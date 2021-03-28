@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<style>
+    body {
+        background-image: url(/img/blzmakeup.jpg);
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
+        height: 100vh;
+    }
+
+    .navbar {
+        width: 100%;
+        padding: 15px;
+        border-radius: 20px;
+        margin: auto;
+        background-color: #e4606d;
+        overflow: auto;
+    }
+
+    .navbar a {
+        float: left;
+        padding: 12px;
+        color: white;
+        text-decoration: none;
+        font-size: 17px;
+    }
+
+    .navbar a:hover {
+        background-color: #A50965;
+        border-radius: 20px;
+        opacity: 0.9;
+    }
+
+    .navbar .logo {
+        float: left;
+        width: 40px;
+    }
+
+    .active {
+        background-color: #A50965;
+        border-radius: 20px;
+    }
+
+    @media screen and (max-width: 500px) {
+        .navbar a {
+            float: none;
+            display: block;
+        }
+    }
+
+    /* NAV END */
+
+    .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 2.5rem;
+        padding: 50px;
+        text-align: center;
+        background: #e4606d;
+    }
+</style>
+<body>
+
+<header th:replace="fragments/fragment :: nav"></header>
+
+<main class="p-5 align-content-center bg-blur">
+
+    Ups... something went wrong! <br/>
+    Please excuse us, we are working on that problem.
+
+</main>
+<footer th:replace="fragments/fragment :: footer"></footer>
+</body>
+</html>
