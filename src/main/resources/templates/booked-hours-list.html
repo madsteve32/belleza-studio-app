@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
     <style>
-
         body {
             background-image: url(/img/blzmakeup.jpg);
             background-size: cover;
@@ -63,16 +62,15 @@
             background: #e4606d;
         }
 
-        /* cards style */
+        /* CONTAINER WITH CARDS */
 
-        /* cards style */
+        /* CONTAINER WITH CARDS */
 
     </style>
 </head>
 <body>
 
 <div th:replace="fragments/fragment :: nav"></div>
-
 <main class="p-5 align-content-center bg-blur my-main">
     <h5 class="text-right text-dark mt-5">Welcome, <span sec:authentication="name"></span></h5>
     <h2  class="text-dark border-bottom">Booked hours: </h2>
@@ -101,8 +99,6 @@
         </div>
     </div>
 </main>
-
-
 </body>
 
 <footer th:replace="fragments/fragment :: footer"></footer>
