@@ -78,14 +78,7 @@
 
 <body>
 
-<div class="navbar">
-    <img class="logo" src="/img/eyebrow.png" alt="logo">
-    <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a>
-    <a href="/makeup-gallery"><i class="fa fa-fw fa-bookmark"></i> Our services</a>
-    <a href="/makeup-list"><i class="fa fa-fw fa-calendar"></i> Booked hours</a>
-    <a href="/users/login"><i class="fa fa-fw fa-user"></i> Login</a>
-    <a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a>
-</div>
+<div th:replace="fragments/fragment :: nav"></div>
 
 <div class="container">
     <div class="row">
@@ -202,9 +195,5 @@
 </div>
 </body>
 <br/>
-<footer class="footer bg-blur">
-    <div class="footer">
-        <h2>&copy;Belleza Makeup Studio 2021. All rights reserved.</h2>
-    </div>
-</footer>
+<footer th:replace="fragments/fragment :: footer"></footer>
 </html>

@@ -3,7 +3,7 @@
 
 <div th:fragment="nav" class="navbar">
     <img class="logo" src="/img/eyebrow.png" alt="logo">
-    <a sec:authorize="isAuthenticated()" class="active" href="/home"><i class="fa fa-fw fa-home"></i> Home</a>
+    <a class="active" href="/home"><i class="fa fa-fw fa-home"></i> Home</a>
     <a href="/gallery"><i class="fa fa-fw fa-bookmark"></i> Our services</a>
     <a sec:authorize="isAuthenticated()" href="/booking/list"><i class="fa fa-fw fa-calendar"></i> Booked hours</a>
     <a sec:authorize="!isAuthenticated()" th:href="@{/users/login}"><i class="fa fa-fw fa-user"></i> Login</a>
