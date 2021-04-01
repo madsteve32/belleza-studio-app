@@ -1,12 +1,9 @@
 package belleza.studio.app.web;
 
-import belleza.studio.app.models.entities.UserEntity;
-import belleza.studio.app.models.entities.UserRoleEntity;
 import belleza.studio.app.models.entities.enums.RoleNameEnum;
 import belleza.studio.app.repositories.UserRepository;
 import belleza.studio.app.repositories.UserRoleRepository;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
