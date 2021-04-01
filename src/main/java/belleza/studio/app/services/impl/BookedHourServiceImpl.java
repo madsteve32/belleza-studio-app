@@ -7,6 +7,7 @@ import belleza.studio.app.repositories.BookedHoursRepository;
 import belleza.studio.app.services.BookedHourService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -50,5 +51,11 @@ public class BookedHourServiceImpl implements BookedHourService {
         });
 
         return viewModels;
+    }
+
+    @Transactional
+    @Override
+    public void completeHour(long id) {
+        bookedHoursRepository.deleteById(id);
     }
 }

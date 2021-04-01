@@ -12,4 +12,6 @@ public interface BookedHourService {
     boolean isBooked(LocalDateTime bookedDateAndTime);
 
     List<BookedHoursViewModel> getAllBookedHours();
+
+    void completeHour(long id);
 }

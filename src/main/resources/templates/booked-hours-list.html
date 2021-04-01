@@ -87,7 +87,7 @@
                     <br/>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
-                            <a type="button" href="" class="btn btn-sm btn-outline-secondary">Complete</a>
+                            <a th:href="@{/booking/complete/{id}(id= ${bookedHour.id})}" class="btn btn-sm btn-outline-secondary">Complete</a>
                         </div>
                     </div>
                 </div>

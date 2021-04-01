@@ -19,11 +19,9 @@ import java.util.stream.Collectors;
 public class BellezaDBUserService implements UserDetailsService {
 
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
 
-    public BellezaDBUserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public BellezaDBUserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
